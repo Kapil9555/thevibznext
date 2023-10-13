@@ -1,4 +1,5 @@
-import './globals.css'
+import VibzContext from '@/Global/VibzContext'
+import FloatingButtons from '@/components/FloatingButtons'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -11,7 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body style={{margin:"0px",padding:"0px"}}>
+      <VibzContext>
+               {children}
+      </VibzContext>
+      <FloatingButtons/>
+      
+      </body>
     </html>
   )
 }

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Staatliches&family=Teko:wght@600;700&display=swap');
+
+.roboto-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400; /* Regular */
+  }
+  
+  .staatliches-text {
+    font-family: 'Staatliches', sans-serif;
+  }
+  
+  .teko-text {
+    font-family:"Staatliches", Sans-serif !important;
+  }
+
+  .newarrive::-webkit-scrollbar {
+    display: none;
+  }
+ 

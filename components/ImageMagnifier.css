@@ -1,0 +1,22 @@
+.magnifier-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .magnifier-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .magnifier-container.zoomed .magnifier-image {
+    transform: scale(1.2);
+  }
+  
+  .magnifier-zoom {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }

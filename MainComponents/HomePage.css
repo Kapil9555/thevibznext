@@ -1,0 +1,7 @@
+.newarrive::-webkit-scrollbar {
+    display: none;
+  }
+body{
+  margin: 0px;
+  padding: 0px;
+}

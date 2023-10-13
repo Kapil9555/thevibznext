@@ -1,0 +1,10 @@
+export const SALE_COLOR="#c62828"
+export const THEME_COLOR="#000000"
+export const GRAY_TYPO="#54595F"
+export const CARD_TITLE_FONT={lg:"12px",md:"10px",sm:"9px",xs:"6px"}
+export const FONT_SIZE_HEADING1={ lg: "30px", md: "27px", sm: "20px", xs: "24px" }
+export const FONT_SIZE_HEADING2={ lg: "24px", md: "22px", sm: "20px", xs: "20px" }
+export const FONT_SIZE_HEADING3={ lg: "17px", md: "16px", sm: "15px", xs: "15px" }
+export const GREY_TITLE="13px"
+export const MOBILE_NUMBER21="+91-9727277721   "
+export const MOBILE_NUMBER26="+91-9727277726"
