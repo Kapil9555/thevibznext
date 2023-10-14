@@ -15,6 +15,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import '../Styles/FontStyle.css';
 import { globalContext } from '../Global/VibzContext';
 import { useParams, useRouter } from 'next/navigation';
+import MyCartDrawer from '@/components/MyCartDrawer';
 
 
 
@@ -27,6 +28,8 @@ const ProductPage = () => {
     const [imageShow,setImageShow]=useState(0)
     const [cardShow, setCardShow] = useState("")
     const [productImg, setProductImg] = useState([]);
+    const [cartOpen,setCartOpen]=useState(false)
+  
 
 
     useEffect(() => {
@@ -46,6 +49,9 @@ const ProductPage = () => {
 
 const handlePageChange=(id)=>{
     router.push(`/userproductpage/${id}`)
+}
+const handleCartHandle=()=>{
+    setCartOpen(true)
 }
     
 
@@ -219,11 +225,11 @@ const handlePageChange=(id)=>{
 
                                             </Grid>
                                             <Grid item lg={9} md={9} sm={9} xs={9} sx={{ display: "flex", justifyContent: "right" }}>
-                                                <Button sx={{ width: "96%", borderRadius: "0PX", height: "40px", color: "white", bgcolor: GRAY_TYPO, "&:hover": { bgcolor: GRAY_TYPO } }} onClick={()=>{router.push('/addtocartpage')}}> <ShoppingBagOutlinedIcon sx={{ mr: "5px" }} />Add to cart </Button>
+                                                <Button sx={{ width: "96%", borderRadius: "0PX", height: "40px", color: "white", bgcolor: GRAY_TYPO, "&:hover": { bgcolor: GRAY_TYPO } }} onClick={()=>{handleCartHandle()}}> <ShoppingBagOutlinedIcon sx={{ mr: "5px" }} />Add to cart </Button>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Box>
-                                                    <Button fullWidth sx={{ borderRadius: "0PX", height: "40px", color: "white", bgcolor: GRAY_TYPO, "&:hover": { bgcolor: GRAY_TYPO } }} onClick={()=>{router.push('/buynowpage')}}> <ShoppingBagOutlinedIcon sx={{ mr: "5px" }} />Buy now </Button>
+                                                    <Button fullWidth sx={{ borderRadius: "0PX", height: "40px", color: "white", bgcolor: GRAY_TYPO, "&:hover": { bgcolor: GRAY_TYPO } }} onClick={()=>{router.push('/buynow/buynowpage')}}> <ShoppingBagOutlinedIcon sx={{ mr: "5px" }} />Buy now </Button>
                                                 </Box>
                                             </Grid>
 
@@ -303,11 +309,13 @@ const handlePageChange=(id)=>{
                                                     Your reviews <span style={{ color: "red" }}>*</span>
                                                 </Typography>
                                                 <TextareaAutosize
-                                                    style={{ width: '100%', border: "1px solid #eeeeee`", outline: "none", background: "none" }} // Set your desired height here
+                                                    style={{ width: '100%', border: "1px solid #eeeeee`", outline: "none", background: "none" }} 
                                                     aria-label="textarea"
                                                     minRows={15}
                                                 />
                                             </Box>
+
+                                            {/* build error */}
                                             <Box sx={{ mt: "15px" }}>
                                                 <Typography sx={{ color: GRAY_TYPO, fontSize: "15px", }}>
                                                     Name <span style={{ color: "red" }}>*</span>
@@ -359,7 +367,6 @@ const handlePageChange=(id)=>{
                                         <Box className="newarrive" sx={{ display: "flex", overflow: "scroll" }}>
                                             {
                                                 couplesData.map((ele,index) => {
-                                                    console.log(ele)
                                                     return (
                                                         <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" }, cursor: "pointer" }} onMouseEnter={() => { setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={()=>{handlePageChange(ele._id)}}>
                                                             <Paper sx={{  pb: "10px", width: { lg: "245px", md: "200px", sm: "220px",xs:"190px" } }}>
@@ -427,6 +434,7 @@ const handlePageChange=(id)=>{
                         <InstagramIcon sx={{ mr: "7px" }} /> FOLLOW US ON INSTAGRAM
                     </Button>
                 </Box>
+                <MyCartDrawer cartOpen={cartOpen} setCartOpen={setCartOpen}/>
                 <Footer />
             </Container>
            

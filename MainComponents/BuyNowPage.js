@@ -8,6 +8,8 @@ import { useTheme } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox';
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation';
+import Footer from '@/components/Footer';
+import FollowUS from '@/components/FollowUS';
 
 
 const ITEM_HEIGHT = 48;
@@ -350,7 +352,7 @@ const BuyNowpage = () => {
 
                                                 </Grid>
                                                 <Grid item xs={12} sx={{mt:'15px'}}>
-                                                    <Button sx={{width:'100%', color:'white', bgcolor:'#212121', '&:hover':{width:'100%', color:'white', bgcolor:'#212121',}}} onClick={()=>{router.push('placeorderpage')}}>Place Order</Button>
+                                                    <Button sx={{width:'100%', color:'white', bgcolor:'#212121', '&:hover':{width:'100%', color:'white', bgcolor:'#212121',}}} onClick={()=>{router.push('/placeorder/placeorderpage')}}>Place Order</Button>
 
                                                 </Grid>
 
@@ -369,9 +371,9 @@ const BuyNowpage = () => {
 
                 </Grid>
             </Grid>
-
-
         </Grid>
+        <FollowUS/>
+        <Footer/>
         </>
     )
 }

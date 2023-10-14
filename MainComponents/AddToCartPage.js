@@ -11,6 +11,8 @@ import webmoney from '../assets/webmoney.png';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { useRouter } from 'next/navigation';
+
 
 const steps = [
   'SHOPPING CART',
@@ -19,6 +21,7 @@ const steps = [
 ];
 
 const AddToCartPage = () => {
+  const router =useRouter()
   const [count, setCount] = useState(0);
 
 
@@ -34,7 +37,7 @@ const AddToCartPage = () => {
   return (
     <>
     <Header/>
-      <Grid container sx={{mt:{lg:'110px', md:'140px', sm:'140px', xs:'140px'}}}>
+      <Grid container sx={{mt:{lg:'170px', md:'180px', sm:'0px', xs:'0px'}}}>
         <Grid item xs={12} sx={{ bgcolor: '#fafafa', display: {lg:'flex', md:'flex', sm:'none', xs:'none'}, justifyContent: 'center', alignItems: 'center' }}>
           <Box sx={{ width: '60%', m: '30px 10px' }}>
             <Stepper activeStep={2}  >
@@ -114,7 +117,7 @@ const AddToCartPage = () => {
                   <Grid item lg={5} md={5} sm={12} xs={12} sx={{ border: '1ppx solid green' }}>
                     <Box sx={{ border: '2px solid #eeeeee', display: 'flex', justifyContent: 'space-between', }}>
                       <InputBase placeholder='Coupon Code' sx={{ ml: '3px', fontSize: '14px' }} />
-                      <Box sx={{ bgcolor: '#eeeeee', p: '5px',width:'20px' }}>
+                      <Box sx={{ bgcolor: '#eeeeee', p: '5px',width:'20px',cursor:"pointer" }}>
                         <Typography sx={{ fontSize: '13px', textAlign:'center' }}>Ok</Typography>
                       </Box>
                     </Box>
@@ -195,7 +198,7 @@ const AddToCartPage = () => {
 
 
                         <Grid item xs={12} sx={{ mt: '15px' }}>
-                          <Button sx={{ width: '100%', color: 'white', bgcolor: '#212121', '&:hover': { width: '100%', color: 'white', bgcolor: '#212121', } }}>Place Order</Button>
+                          <Button sx={{ width: '100%', color: 'white', bgcolor: '#212121', '&:hover': { width: '100%', color: 'white', bgcolor: '#212121', } }} onClick={()=>{router.push('/buynow/buynowpage')}}>Proceed to Checkout</Button>
 
                         </Grid>
                         <Grid item xs={12} sx={{ mt: '15px' }}>

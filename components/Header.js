@@ -14,7 +14,7 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { AppBar, Box, Button, Grid, Toolbar, Typography } from '@mui/material';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
@@ -35,7 +35,7 @@ import MyCartDrawer from './MyCartDrawer';
 
 export default function Header() {
     const router=useRouter()
-    
+    const params =useParams()
     const { state } = useContext(globalContext)
     const [hoverEffect, setHoverEffect] = useState(false)
     const [borderStyle, setBorderStyle] = useState({ Stitle:"", Smenu:false })
@@ -74,7 +74,7 @@ export default function Header() {
     ];
 
 
-console.log(rightOpen)
+
 
     
     function isInViewport() {
@@ -119,8 +119,18 @@ console.log(rightOpen)
         router.push(`/${navigator}`)
     }
 
+    const handleCartControl=()=>{
+        const paramsValue=Object.keys(params)[0]
+        
+        if(paramsValue=='buynowpage' || paramsValue=='placeorderpage' || paramsValue=='addtocartpage'){
+              router.push('/addtocart/addtocartpage')     
+        }
+        else{
+            setCartOpen(true)
+        }
+    }
 
- 
+
     
         return (
             <>
@@ -216,7 +226,7 @@ console.log(rightOpen)
 
                         <Grid item xs={3} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <Box>
-                                <Button sx={{ color: "black", bgcolor: "white", "&:hover": { bgcolor: "white" }, fontWeight: "900" }} onClick={()=>{setCartOpen(true)}}> <ShoppingBagOutlinedIcon sx={{ fontWeight: "300", mr: "5px" }} />my cart ₹ 0.0</Button>
+                                <Button sx={{ color: "black", bgcolor: "white", "&:hover": { bgcolor: "white" }, fontWeight: "900" }} onClick={handleCartControl}> <ShoppingBagOutlinedIcon sx={{ fontWeight: "300", mr: "5px" }} />my cart ₹ 0.0</Button>
                             </Box>
                         </Grid>
                     </Grid>

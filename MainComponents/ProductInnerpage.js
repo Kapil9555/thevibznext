@@ -261,7 +261,7 @@ console.log(params.shop)
                                         <Grid container sx={{ p: '0px 0px 0px 10px' }}>
                                             {
                                                 categories.map((ele, index) => {
-                                                    console.log(ele)
+                                                    
                                                     return (
                                                         <Grid key={index} item xs={12}>
                                                             <Typography sx={{ color:colorTypo==ele.cID?"black":'gray', cursor: "pointer", lineHeight: '30px', fontSize: { lg: '16px', md: '15px' } }} onClick={() => { handleShowProducts(ele.cID) }}>

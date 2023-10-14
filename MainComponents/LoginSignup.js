@@ -1,8 +1,5 @@
 'use client'
-import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, IconButton, OutlinedInput, Typography } from '@mui/material'
-import { useState } from 'react'
-import InputAdornment from '@mui/material/InputAdornment';
+import { Box, Button, Checkbox, Container, Grid, OutlinedInput, Typography } from '@mui/material'
 import { GRAY_TYPO, THEME_COLOR } from '../Styles/ConstantStyle'
 import '../Styles/FontStyle.css'
 import FollowUS from '../components/FollowUS'
@@ -11,12 +8,7 @@ import Header from '../components/Header'
 
 
 const LoginSignup = () => {
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handleClickShowPassword = () => setShowPassword((show) => !show)
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+   
     return (
         <>
             <Header />
@@ -54,15 +46,18 @@ const LoginSignup = () => {
                                                 sx={{ height: "40px", borderRadius: "0px", mt: "7px" }}
                                                 fullWidth
                                             />
-                                            <Box sx={{ mt: "15px", display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
-                                                <FormGroup>
-
-                                                    <FormControlLabel required control={<Checkbox size='small' sx={{}} />} label={<Typography sx={{ color: GRAY_TYPO, fontSize: "14px", mt: "15px", mt: "0px" }}>
+                                            <Box sx={{ mt: "15px", display: "flex", alignItems: "center", width: "100%" }}>
+                                                <Box sx={{display:"flex",alignItems:"center",justifyContent:"space-between",width:"100%"}}>
+                                                      <Box sx={{display:"flex",alignItems:"center"}}>
+                                                       <Checkbox size='small' sx={{}}/> <Typography sx={{ color: GRAY_TYPO, fontSize: "14px"}}>
                                                         Remember me
-                                                    </Typography>} />
-
-                                                </FormGroup>
-                                                <Typography> <a href='#' style={{ color: "black" }}>Lost Your Password?</a></Typography>
+                                                      </Typography>
+                                                      </Box> 
+                                                    
+                                                      <Box sx={{border:"1px solid red"}}>
+                                                        <Typography> <a href='#' style={{ color: "black" }}>Lost Your Password?</a></Typography>
+                                                      </Box>
+                                                </Box>
                                             </Box>
                                             <Box>
                                                 <Button sx={{ bgcolor: THEME_COLOR, borderRadius: "0px", mt: "15px", "&:hover": { bgcolor: THEME_COLOR }, color: "white" }} fullWidth> Login</Button>

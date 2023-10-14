@@ -1,7 +1,6 @@
 'use client'
 import { globalContext } from '@/Global/VibzContext';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -18,6 +17,7 @@ import b3Image from '../assets/b3-scaled.png';
 import b5 from '../assets/b5-scaled.png';
 import CrouselComp from '../components/CrouselComp';
 import './HomePage.css';
+import Header from '@/components/Header';
 
 
 
@@ -96,14 +96,14 @@ const HomePage = () => {
        router.push(`/shoppage/${id}`)
     }
   
-  
+
 
     return (
-        <>
+      
             <Container maxWidth={'xl'} disableGutters>
                 <Grid container sx={{overflow:"hidden"}}>
                     <Grid  item xs={12} sx={{}}>
-                        {/* <Header /> */}
+                        <Header/>
                     </Grid>
                     
                     <Grid item xs={12} sx={{mt:"165px" }}>
@@ -643,7 +643,7 @@ const HomePage = () => {
 
                 </Grid>
             </Container>
-        </>
+        
     )
 }
 

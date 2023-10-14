@@ -5,7 +5,7 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
 const MyCartDrawer = ({ cartOpen,setCartOpen}) => {
     const closeHandler = () => {
-        setOpen(false)
+        setCartOpen(false)
       }
   
     return (

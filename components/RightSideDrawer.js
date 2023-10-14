@@ -58,7 +58,7 @@ const RightSideDrawer = ({ rightOpen, setRightOpen }) => {
               <Typography sx={{ color: change == 'register' ? 'black' : 'grey', fontSize: '14px', textAlign: 'center', fontWeight: '600' }} >REGISTER</Typography>
             </Grid>
           </Grid>
-          <Grid container >
+          <Grid container>
             {change == 'login' ?
               <Grid item xs={12} sx={{ textAlign: 'left', p: '10px', pb: '20px' }}>
                 <Typography sx={{ color: 'black', fontSize: '15px' }}>Username or email *</Typography>
