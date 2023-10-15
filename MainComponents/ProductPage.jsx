@@ -70,7 +70,7 @@ const handleShowDataDrawer=(event,ele)=>{
     return (
             <Container maxWidth={'xl'} disableGutters sx={{overflow:"hidden"}}>
             <Header/>
-                <Grid container sx={{ mt: "175px",pl:"10px",pr:"10px",overflow:"hidden" }}>
+                <Grid container sx={{ pl:"10px",pr:"10px",overflow:"hidden" }}>
                     <Grid item xs={12}>
                         <Box sx={{ height: "60px", bgcolor: "#eeeeee" }}>
 

@@ -71,7 +71,7 @@ const AllCategories = () => {
     <Header/>
     <Container maxWidth disableGutters>
         
-        <Grid container sx={{mt:"175px"}}>
+        <Grid container>
         <Grid item xs={12}>
             <Box sx={{height:"60px",bgcolor:"#eeeeee"}}>
 

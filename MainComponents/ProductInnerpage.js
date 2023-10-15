@@ -209,7 +209,7 @@ console.log(params.shop)
             <Header />
             {/* <HomePage /> */}
 
-            <Grid container sx={{ mt: "180px" }}>
+            <Grid container >
                 <Grid item xs={12} sx={{ bgcolor: '#f5f5f5', display: 'flex', justifyContent: 'center', alignItems: 'center', p: '8px' }}>
                     <Typography sx={{ color: 'grey', fontSize: '15px' }}>Home</Typography>
                     <KeyboardArrowRightIcon sx={{ color: '#bdbdbd', fontSize: '18px', mb: '2px' }} />

@@ -118,7 +118,7 @@ const HomePage = () => {
                         <Header/>
                     </Grid>
                     
-                    <Grid item xs={12} sx={{mt:"165px" }}>
+                    <Grid item xs={12} sx={{}}>
                         <CrouselComp />
                     </Grid>
                     <Grid item xs={12} sx={{ mt: "20px", display: "flex", justifyContent: "center" }}>

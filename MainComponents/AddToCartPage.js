@@ -37,7 +37,7 @@ const AddToCartPage = () => {
   return (
     <>
     <Header/>
-      <Grid container sx={{mt:{lg:'170px', md:'180px', sm:'0px', xs:'0px'}}}>
+      <Grid container >
         <Grid item xs={12} sx={{ bgcolor: '#fafafa', display: {lg:'flex', md:'flex', sm:'none', xs:'none'}, justifyContent: 'center', alignItems: 'center' }}>
           <Box sx={{ width: '60%', m: '30px 10px' }}>
             <Stepper activeStep={2}  >

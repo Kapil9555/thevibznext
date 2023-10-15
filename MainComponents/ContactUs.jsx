@@ -22,7 +22,7 @@ const ContactUs = () => {
             <Header />
             <Container maxWidth disableGutters sx={{ }}>
 
-                <Grid container sx={{ mt: "171px" }}>
+                <Grid container>
                     <Grid item xs={12}>
                         <Box sx={{ height: "60px", bgcolor: "#eeeeee" }}>
 

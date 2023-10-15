@@ -134,7 +134,7 @@ export default function Header() {
     
         return (
             <>
-            <AppBar elevation={0} sx={{display: {lg:"block",md:"block",sm:"none",xs:"none"}}}>
+            <AppBar position='static' elevation={0} sx={{display: {lg:"block",md:"block",sm:"none",xs:"none"}}}>
                 <Toolbar component={Box} disableGutters sx={{pt: "10px", color: "white", bgcolor: "black", display: {lg:"flex",md:"flex",sm:"none",xs:"none"}, flexDirection: "column" }}>
 
                     <Grid container sx={{ mb: "5px",}}>

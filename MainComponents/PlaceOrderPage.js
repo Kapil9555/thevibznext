@@ -13,7 +13,7 @@ const PlaceOrderPage = () => {
     return (
         <>
         <Header/>
-            <Grid container sx={{mt:{lg:'160px', md:'140px', sm:'140px', xs:'140px'}}}>
+            <Grid container>
                 <Grid item xs={12} sx={{ bgcolor: '#fafafa', display: {lg:'flex', md:'flex', sm:'none', xs:'none'}, justifyContent: 'center', alignItems: 'center', p: '10px' }}>
                     <Box sx={{ width: '60%', m: '30px 10px' }}>
                         <Stepper activeStep={2}  >
