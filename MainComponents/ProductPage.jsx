@@ -16,6 +16,7 @@ import '../Styles/FontStyle.css';
 import { globalContext } from '../Global/VibzContext';
 import { useParams, useRouter } from 'next/navigation';
 import MyCartDrawer from '@/components/MyCartDrawer';
+import QuickViewDrawer from '@/components/QuickViewDrawer';
 
 
 
@@ -29,6 +30,11 @@ const ProductPage = () => {
     const [cardShow, setCardShow] = useState("")
     const [productImg, setProductImg] = useState([]);
     const [cartOpen,setCartOpen]=useState(false)
+    const [quickViewData,setQuickViewData]=useState([])
+    const [quickView,setQuickView]=useState(false)
+
+
+    
   
 
 
@@ -54,11 +60,14 @@ const handleCartHandle=()=>{
     setCartOpen(true)
 }
     
+const handleShowDataDrawer=(event,ele)=>{
+    event.stopPropagation()
+    setQuickViewData(ele)
+     setQuickView(true)
+}
 
 
     return (
-        <>
-            
             <Container maxWidth={'xl'} disableGutters sx={{overflow:"hidden"}}>
             <Header/>
                 <Grid container sx={{ mt: "175px",pl:"10px",pr:"10px",overflow:"hidden" }}>
@@ -435,12 +444,9 @@ const handleCartHandle=()=>{
                     </Button>
                 </Box>
                 <MyCartDrawer cartOpen={cartOpen} setCartOpen={setCartOpen}/>
+              <QuickViewDrawer open={quickView} setOpen={setQuickView} data={quickViewData}/>
                 <Footer />
             </Container>
-           
-
-
-        </>
     )
 }
 

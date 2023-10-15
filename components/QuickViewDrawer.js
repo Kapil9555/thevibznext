@@ -41,7 +41,7 @@ const iconList = [
     },
 ]
 
-const QuickViewDrawer = ({ open, setOpen }) => {
+const QuickViewDrawer = ({ open, setOpen,data }) => {
     const router = useRouter();
     const [count, setCount] = useState(0);
     const [show, setShow] = useState(true)
@@ -68,6 +68,7 @@ const QuickViewDrawer = ({ open, setOpen }) => {
         console.log('out')
     }
 
+    console.log()
     
 
     return (
@@ -85,7 +86,15 @@ const QuickViewDrawer = ({ open, setOpen }) => {
                 </Grid>
 
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', mt: '20px' }}>
-                    <Box sx={{ width: '90%', height: {lg:'500px', md:'350px', sm:'340px', xs:'320px'}, backgroundImage: `url(${couple1.src})`, backgroundSize: '100% 100%', position: 'cover', backgroundRepeat: 'no-repeat' }}  onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>
+
+                {
+                    data.length<1
+                    ?
+                    <Box sx={{ width: '90%', height: {lg:'500px', md:'350px', sm:'340px', xs:'320px'},display:"flex",alignItems:"center",justifyContent:"center",border:"1px solid red"}}>
+                    <Typography sx={{fontSize:"14px",color:"black"}}>Loading....</Typography>
+                </Box>
+                :
+                <Box sx={{ width: '90%', height: {lg:'500px', md:'350px', sm:'340px', xs:'320px'}, backgroundImage: `url(${data.magnifyImg[0].img.src})`, backgroundSize: '100% 100%', position: 'cover', backgroundRepeat: 'no-repeat' }}  onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>
                         <Grid container sx={{ mt: '20px' }}>
                             <Grid item xs={12}>
                                 <Box sx={{ width: {lg:'50px', md:'50px', sm:'48px', xs:'30px'}, height: '26px', ml: {lg:'20px', md:'20px', sm:'15px', xs:'10px'}, bgcolor: '#b71c1c', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -106,12 +115,17 @@ const QuickViewDrawer = ({ open, setOpen }) => {
 
                     </Box>
 
+                }
+                
+
+                    
+
 
                 </Grid>
 
                 <Grid item xs={12} sx={{ p: '0px  18px' }}>
-                    <Typography sx={{ fontSize: {lg:'19px', md:'17px', sm:'17px', xs:'16px', textAlign:'center'}, fontWeight: '700', color: 'black', mt: '20px', cursor:'pointer' }}>Abstarct Element Low Shoulder Shirt</Typography>
-                    <Typography sx={{ mt: '10px', fontSize:{ lg:'17px', md:'15px', sm:'14px', xs:'14px'} }}><del style={{ color: '#9e9e9e', }}>₹1,799.00</del> <span style={{ color: 'black', marginLeft: '5px' }}>₹1,349.00</span> </Typography>
+                    <Typography sx={{ fontSize: {lg:'19px', md:'17px', sm:'17px', xs:'16px', textAlign:'center'}, fontWeight: '700', color: 'black', mt: '20px', cursor:'pointer' }}>{data.productName}</Typography>
+                    <Typography sx={{ mt: '10px', fontSize:{ lg:'17px', md:'15px', sm:'14px', xs:'14px'} }}><del style={{ color: '#9e9e9e', }}>{data.orgPrice}</del> <span style={{ color: 'black', marginLeft: '5px' }}>{data.discPrice}</span> </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'left', alignItems: 'center' }}>
                         <RemoveRedEyeOutlinedIcon sx={{ fontSize: {lg:'18px', md:'18px', sm:'16px', xs:'15px'}, color: 'black' }} />
                         <Typography sx={{ fontSize:{ lg:'14px', md:'14px', sm:'13px', xs:'13px'}, color: 'black', ml: '5px' }}> 38 people are viewing this product right now</Typography>
@@ -166,7 +180,7 @@ const QuickViewDrawer = ({ open, setOpen }) => {
                         <Typography sx={{ fontSize: '14px', color: '#9e9e9e', ml: '5px', '&:hover':{color:'black'}, cursor:'pointer' }}>Couple Shirts</Typography>
 
                     </Grid>
-                    < Grid item xs={12} sx={{ display: 'flex', justifyContent: 'left', alignItems: 'center', mt: '8px' }}>
+                    <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'left', alignItems: 'center', mt: '8px' }}>
                         <Typography sx={{ fontSize: '14px', color: 'black', }}>Share: </Typography>
                         <Box >
                             {

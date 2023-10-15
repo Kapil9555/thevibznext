@@ -18,6 +18,8 @@ import b5 from '../assets/b5-scaled.png';
 import CrouselComp from '../components/CrouselComp';
 import './HomePage.css';
 import Header from '@/components/Header';
+import QuickViewDrawer from '@/components/QuickViewDrawer';
+import { CleaningServices } from '@mui/icons-material';
 
 
 
@@ -29,9 +31,12 @@ const HomePage = () => {
     const {state,dispatch}=useContext(globalContext)
     const [allCat,setAllCat]=useState([])
     const [cardShow, setCardShow] = useState("")
+    const [quickView,setQuickView]=useState(false)
+    const [quickViewData,setQuickViewData]=useState([])
+
     const skeletonArr=new Array(4).fill(1)
 
-
+//   console.log(state.mainState)
  
    
     useEffect(()=>{
@@ -87,13 +92,20 @@ const HomePage = () => {
         arrows: true,
     }
 
-    const handleProductControl =(ele)=>{
+    const handleProductControl =(event,ele)=>{
+        event.stopPropagation()
         router.push(`/userproductpage/${ele}`)
     }
     
-    const handleCatControl =(id)=>{
+    const handleCatControl =(event,id)=>{
         // console.log(id)
        router.push(`/shoppage/${id}`)
+    }
+
+    const handleShowDataDrawer=(event,ele)=>{
+        event.stopPropagation()
+        setQuickViewData(ele)
+         setQuickView(true)
     }
   
 
@@ -134,6 +146,7 @@ const HomePage = () => {
                         <Box className="newarrive" sx={{ display: "flex", width: { lg: "80%", md: "85%", sm: "90%", xs: "100%" },justifyContent:"space-between", overflow: "scroll" }}>
                          {
                             skeletonArr.map((ele)=>{
+                               
                                 return(
                                     <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",m:"10px"}}>
                                         <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "220px", sm: "170px", xs: "230px" }}}/>
@@ -152,9 +165,7 @@ const HomePage = () => {
                                 state.mensHalfSleeve.map((ele,index) => {
                                     
                                     return (
-                                        <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={()=>{
-                                            handleProductControl(ele._id)
-                                        }}>
+                                        <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}}  onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" } }}>
 
                                                 <Box sx={{height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
@@ -163,8 +174,12 @@ const HomePage = () => {
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
                                                       {
-                                                        cardShow == ele._id && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
-                                                        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%",m:"10px" }}>
+                                                        cardShow == ele._id && (
+                                                            <Box sx={{ position: "absolute",height:"100%",width:"100%" }}>
+
+                                                           
+                                                            <Box sx={{ height: "90%", width: "100%", zIndex: 1,}} >
+                                                            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%",m:"10px" }}>
                                                             <Box>
                                                                 <ArrowBackIosIcon sx={{ fontSize: "20px"}} />
                                                             </Box>
@@ -173,8 +188,9 @@ const HomePage = () => {
                                                             </Box>
                                                         </Box>
                                                         <Box sx={{ display: "flex", justifyContent: "center", mt: "10px",m:"15px" }}>
-                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} >QUICK VIEW</Button>
+                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} onClick={(event)=>{handleShowDataDrawer(event,ele)}}>QUICK VIEW</Button>
                                                         </Box>
+                                                    </Box>
                                                     </Box>)
 
                                                      }
@@ -252,9 +268,7 @@ const HomePage = () => {
                                 {
                                     state.couplesData.map((ele,index) => {
                                         return (
-                                            <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele) }} onMouseLeave={()=>{setCardShow("")}} onClick={()=>{
-                                            handleProductControl(ele._id)
-                                        }}>
+                                            <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" }}}>
 
                                                 <Box sx={{ height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
@@ -262,7 +276,7 @@ const HomePage = () => {
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
                                                       {
-                                                        cardShow == ele.productName && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
+                                                        cardShow == ele._id && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
                                                         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%",m:"10px" }}>
                                                             <Box>
                                                                 <ArrowBackIosIcon sx={{ fontSize: "20px"}} />
@@ -272,7 +286,7 @@ const HomePage = () => {
                                                             </Box>
                                                         </Box>
                                                         <Box sx={{ display: "flex", justifyContent: "center", mt: "10px",m:"15px" }}>
-                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} >QUICK VIEW</Button>
+                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} onClick={(event)=>{handleShowDataDrawer(event,ele)}}>QUICK VIEW</Button>
                                                         </Box>
                                                     </Box>)
 
@@ -349,9 +363,7 @@ const HomePage = () => {
                             {
                                 state.woHalf.map((ele,index) => {
                                     return (
-                                        <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele) }} onMouseLeave={()=>{setCardShow("")}} onClick={()=>{
-                                            handleProductControl(ele._id)
-                                        }}>
+                                        <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" } }}>
 
                                                 <Box sx={{ height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
@@ -359,7 +371,7 @@ const HomePage = () => {
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
                                                       {
-                                                        cardShow == ele.productName && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
+                                                        cardShow == ele._id && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
                                                         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%",m:"10px" }}>
                                                             <Box>
                                                                 <ArrowBackIosIcon sx={{ fontSize: "20px"}} />
@@ -369,7 +381,7 @@ const HomePage = () => {
                                                             </Box>
                                                         </Box>
                                                         <Box sx={{ display: "flex", justifyContent: "center", mt: "10px",m:"15px" }}>
-                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} >QUICK VIEW</Button>
+                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} onClick={(event)=>{handleShowDataDrawer(event,ele)}}>QUICK VIEW</Button>
                                                         </Box>
                                                     </Box>)
 
@@ -446,9 +458,7 @@ const HomePage = () => {
                             {
                                 state.menFormalShirt.map((ele,index) => {
                                     return (
-                                        <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele) }} onMouseLeave={()=>{setCardShow("")}} onClick={()=>{
-                                            handleProductControl(ele._id)
-                                        }}>
+                                        <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" } }}>
 
                                                 <Box sx={{ height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
@@ -456,7 +466,7 @@ const HomePage = () => {
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
                                                       {
-                                                        cardShow == ele.productName && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
+                                                        cardShow == ele._id && (<Box sx={{ height: "90%", width: "100%", position: "absolute", zIndex: 1 }} >
                                                         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "90%",m:"10px" }}>
                                                             <Box>
                                                                 <ArrowBackIosIcon sx={{ fontSize: "20px"}} />
@@ -466,7 +476,7 @@ const HomePage = () => {
                                                             </Box>
                                                         </Box>
                                                         <Box sx={{ display: "flex", justifyContent: "center", mt: "10px",m:"15px" }}>
-                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} >QUICK VIEW</Button>
+                                                            <Button variant='contained' sx={{ "&:hover": { bgcolor: THEME_COLOR }, fontSize: { xs: "10px" }, bgcolor: THEME_COLOR, width: { lg: "100%", md: "90%", sm: "80%", xs: "70%" } }} onClick={(event)=>{handleShowDataDrawer(event,ele)}}>QUICK VIEW</Button>
                                                         </Box>
                                                     </Box>)
 
@@ -512,12 +522,10 @@ const HomePage = () => {
                             <Grid container sx={{}}>
                                 {
                                     allCat.map((ele) => {
-                                        
+                                        console.log(ele)
                                         return (
                                             <Grid key={ele.catId} item lg={4} md={4} sx={{ cursor: "pointer" }}>
-                                                <Box sx={{ m: "15px", mt: "20px", backgroundImage: `url(${ele.imgCat.src})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "530px" }} onClick={()=>{
-                                            handleCatControl(ele.catId)
-                                        }}>
+                                                <Box sx={{ m: "15px", mt: "20px", backgroundImage: `url(${ele.imgCat.src})`, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", height: "530px" }} onClick={(event)=>{handleCatControl(event,ele.catId)}}>
 
                                                 </Box>
                                                 <Box>
@@ -642,6 +650,7 @@ const HomePage = () => {
 
 
                 </Grid>
+              <QuickViewDrawer open={quickView} setOpen={setQuickView} data={quickViewData}/>
             </Container>
         
     )

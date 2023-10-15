@@ -51,7 +51,7 @@ const AdminProductPage = () => {
                </Grid>
                 
                 <Grid item xs={4} sx={{display:"flex",justifyContent:"center"}}>
-                <Typography sx={{ fontSize: "25px", fontWeight: "900", color: "white" }}>
+                <Typography sx={{ fontSize: "25px", fontWeight: "900", color: "white",border:"1px solid red",cursor:"pointer" }} onClick={()=>{router.push('/home')}}>
                   Men Product,s
                 </Typography>
                 </Grid>

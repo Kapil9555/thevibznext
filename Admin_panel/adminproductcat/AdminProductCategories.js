@@ -19,7 +19,7 @@ const AdminProductCategories = () => {
 
     useEffect(() => {
         setMainApi(filterData());
-      }, []);
+      }, [state.mainState]);
     
       
       const filterData = () => {
@@ -49,10 +49,7 @@ const AdminProductCategories = () => {
     const handleOpen = () =>setOpen(true)
         
     const handlePageChange =(ele)=>{
-        console.log(ele)
-        setCatIDU(ele)
         router.push(`/adminproductsec/${ele.cat_ID}`)
-        
     }
 
     const handleEditCat =(item)=>{
