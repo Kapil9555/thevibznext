@@ -26,6 +26,7 @@ import { CleaningServices } from '@mui/icons-material';
 
 
 
+
 const HomePage = () => {
     const router=useRouter()
     const {state,dispatch}=useContext(globalContext)
@@ -33,7 +34,7 @@ const HomePage = () => {
     const [cardShow, setCardShow] = useState("")
     const [quickView,setQuickView]=useState(false)
     const [quickViewData,setQuickViewData]=useState([])
-
+    
     const skeletonArr=new Array(4).fill(1)
 
 //   console.log(state.mainState)
@@ -111,11 +112,12 @@ const HomePage = () => {
 
 
     return (
-      
-            <Container maxWidth={'xl'} disableGutters>
+            <>
+                <Header/>
+            <Container  maxWidth={'xl'} disableGutters>
                 <Grid container sx={{overflow:"hidden"}}>
-                    <Grid  item xs={12} sx={{}}>
-                        <Header/>
+                    <Grid  item xs={12} >
+                      
                     </Grid>
                     
                     <Grid item xs={12} sx={{}}>
@@ -149,7 +151,7 @@ const HomePage = () => {
                                
                                 return(
                                     <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",m:"10px"}}>
-                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "220px", sm: "170px", xs: "230px" }}}/>
+                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "320px", sm: "290px", xs: "260px"}}}/>
                                         <Skeleton   sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
@@ -168,7 +170,7 @@ const HomePage = () => {
                                         <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}}  onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" } }}>
 
-                                                <Box sx={{height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
+                                                <Box sx={{height: { lg: "350px", md: "320px", sm: "290px", xs: "260px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
                                                  
                                                  {  ele.sale && <span style={{ backgroundColor: SALE_COLOR, top: "10px", left: "10px", padding: "5px 8px", position: "absolute" }}>
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
@@ -251,7 +253,7 @@ const HomePage = () => {
                             skeletonArr.map((ele)=>{
                                 return(
                                     <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",m:"10px"}}>
-                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "220px", sm: "170px", xs: "230px" }}}/>
+                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "320px", sm: "290px", xs: "260px"}}}/>
                                         <Skeleton   sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
@@ -271,7 +273,7 @@ const HomePage = () => {
                                             <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" }}}>
 
-                                                <Box sx={{ height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
+                                                <Box sx={{ height: { lg: "350px", md: "320px", sm: "290px", xs: "260px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
                                                    { ele.sale && <span style={{ backgroundColor: SALE_COLOR, top: "10px", left: "10px", padding: "5px 8px", position: "absolute" }}>
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
@@ -347,7 +349,7 @@ const HomePage = () => {
                             skeletonArr.map((ele)=>{
                                 return(
                                     <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",m:"10px"}}>
-                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "220px", sm: "170px", xs: "230px" }}}/>
+                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "320px", sm: "290px", xs: "260px"}}}/>
                                         <Skeleton   sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
@@ -366,7 +368,7 @@ const HomePage = () => {
                                         <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" } }}>
 
-                                                <Box sx={{ height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
+                                                <Box sx={{ height: { lg: "350px", md: "320px", sm: "290px", xs: "260px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
                                                     { ele.sale && <span style={{ backgroundColor: SALE_COLOR, top: "10px", left: "10px", padding: "5px 8px", position: "absolute" }}>
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
@@ -442,7 +444,7 @@ const HomePage = () => {
                             skeletonArr.map(()=>{
                                 return(
                                     <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",m:"10px"}}>
-                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "220px", sm: "170px", xs: "230px" }}}/>
+                                        <Skeleton variant="rectangular" sx={{ width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height: { lg: "350px", md: "320px", sm: "290px", xs: "260px"}}}/>
                                         <Skeleton   sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
                                         <Skeleton sx={{width: { lg: "270px", md: "230px", sm: "200px",xs:"200px" },height:"20px"}}/>
@@ -461,7 +463,7 @@ const HomePage = () => {
                                         <Box key={index} sx={{ m: { lg: "20px", md: "15px", sm: "12px", xs: "9px" },cursor:"pointer" }} onMouseEnter={() => {setCardShow(ele._id) }} onMouseLeave={()=>{setCardShow("")}} onClick={(event)=>{handleProductControl(event,ele._id)}}>
                                             <Paper sx={{ width: "fit-content", pb: "10px", width: { lg: "270px", md: "230px", sm: "200px",xs:"190px" } }}>
 
-                                                <Box sx={{ height: { lg: "350px", md: "320px", sm: "270px", xs: "230px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
+                                                <Box sx={{ height: { lg: "350px", md: "320px", sm: "290px", xs: "260px" }, backgroundImage: `url(${ele.magnifyImg[0].img.src})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",width: "100%", position: "relative" }}>
                                                    { ele.sale && <span style={{ backgroundColor: SALE_COLOR, top: "10px", left: "10px", padding: "5px 8px", position: "absolute" }}>
                                                         <Typography sx={{ color: "white", fontSize: "12px" }}>SALE</Typography>
                                                     </span>}
@@ -554,7 +556,7 @@ const HomePage = () => {
                                         allCat.map((ele, index) => {
                                             return (
                                                 <Box key={index} sx={{ width: "100%" }}>
-                                                    <Box sx={{ backgroundImage: `url(${ele.imgCat.src})`, width: "100%", display: "flex", alignItems: "center", justifyContent: "center", height: { lg: "230px", md: "300px", sm: "550px", xs: "400px" }, backgroundSize: "100% 100%" }}>
+                                                    <Box sx={{ backgroundImage: `url(${ele.imgCat.src})`, width: "100%", display: "flex", alignItems: "center", justifyContent: "center", height: { lg: "230px", md: "300px", sm: "550px", xs: "500px" }, backgroundSize: "100% 100%" }}>
 
                                                     </Box>
                                                 </Box>
@@ -568,14 +570,14 @@ const HomePage = () => {
                         </Box>
 
                     </Grid>
-
+``
 
                     {/* the vibzz three photos */}
 
 
-                    <Grid item xs={12} sx={{ mt: { lg: "30px", md: "25px", sm: "17px", xs: "0px" } }}>
-                        <Box className="newarrive" sx={{ background: "#9e9e9e", backgroundBlendMode: "multiply", p: { lg: "25px 0px", md: "25px 0px", sm: "25px 0px", xs: "25px 0px" }, width: "100%", display: "flex", justifyContent: "center" }}>
-                            <Box sx={{ width: { lg: "80%", md: "85%", sm: "90%", xs: "100%" }, backgroundImage: `url(${b6.src})`, height: { lg: "600px", md: "600px", sm: "500px", xs: "420px" }, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
+                    <Grid item xs={12} sx={{ mt: { lg: "30px", md: "25px", sm: "17px", xs: "0px" }, bgcolor:"#9e9e9e",height: { lg: "600px", md: "650px", sm: "500px", xs: "550px" } }}>
+                        <Box className="newarrive" sx={{ width: "100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center",}}>
+                            <Box sx={{ width: { lg: "80%", md: "85%", sm: "90%", xs: "100%" },backgroundImage: `url(${b6.src})`,height:{xs:"80%",sm:"85%",md:"90%",lg:"95%"}, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
                                 <Box sx={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                                     <Box sx={{ height: "fit-content", width: { lg: "60%", md: "65%", sm: "70%", xs: "70%" } }}>
                                         <Typography align='center' sx={{ fontSize:FONT_SIZE_HEADING1, fontWeight: "900", color: "white", }}>
@@ -606,8 +608,8 @@ const HomePage = () => {
                     </Grid>
 
 
-                    <Grid item xs={12} sx={{ mt: "15px" }}>
-                        <Box sx={{  width: "100%", backgroundImage: `url(${b3Image.src})`, height: { lg: "600px", md: "600px", sm: "450px", xs: "300px" }, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
+                    <Grid item xs={12} sx={{ mt: "15px",}}>
+                        <Box sx={{  width: "100%",background:"#757575",backgroundBlendMode:"multiply", backgroundImage: `url(${b3Image.src})`, height:"450px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
                             <Box sx={{ height: "100%", display: "flex", alignItems: "center", justifyContent: { xs: "left", sm: "center", md: "center", lg: "center" } }}>
                                 <Box sx={{ ml:"15px",width: { lg: "80%", md: "90%", sm: "90%", xs: "100%" } }}>
                                     <Typography sx={{ fontSize: { lg: "40px", md: "27px", sm: "20px", xs: "22px" }, fontWeight: "900", color: "white", }}>
@@ -627,13 +629,13 @@ const HomePage = () => {
 
 
                     <Grid item xs={12}>
-                        <Box sx={{ width: "100%", backgroundImage: `url(${b5.src})`, height: { lg: "600px", md: "600px", sm: "450px", xs: "300px" }, backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", backgroundPosition: "center" }}>
+                        <Box sx={{ width: "100%",background:"#757575",backgroundBlendMode:"multiply", backgroundImage: `url(${b5.src})`, height: { lg: "580px", md: "600px", sm: "580px", xs: "600px" }, backgroundRepeat: "no-repeat", backgroundSize: "cover"}}>
                             <Box sx={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
 
-                                <Typography sx={{ fontSize: { lg: "40px", md: "27px", sm: "20px", xs: "24px" }, fontWeight: "900", color: "white", }}>
+                                <Typography align='center' sx={{ fontSize: { lg: "40px", md: "35px", sm: "35px", xs: "35px" }, fontWeight: "900", color: "white" }}>
                                     ENJOY UP TO 30% OFF
                                 </Typography>
-                                <Button sx={{ mt: "15px", letterSpacing: "-0.5px", bgcolor: "white", border: "3px solid transparent", fontSize: "12px", fontWeight: "900", color: "black", "&:hover": { background: "none", color: "white", border: "3px solid white" } }}>
+                                <Button sx={{ mt:{lg:"15px",md:"15px",sm:"13px",xs:"10px"}, letterSpacing: "-0.5px", bgcolor: "white", border: "3px solid transparent", fontSize: "12px", fontWeight: "900", color: "black", "&:hover": { background: "none", color: "white", border: "3px solid white" } }}>
                                     shop men collection
                                 </Button><br />
 
@@ -652,6 +654,7 @@ const HomePage = () => {
                 </Grid>
               <QuickViewDrawer open={quickView} setOpen={setQuickView} data={quickViewData}/>
             </Container>
+            </>
         
     )
 }

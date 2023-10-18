@@ -41,7 +41,7 @@ const CrouselComp = () => {
           {
             images.map((ele,index)=>(
                 <Box key={index}>
-                  <Box sx={{backgroundImage:`url(${ele.silde.src})`,display:"flex",alignItems:"center",justifyContent:"center",height:{lg:"600px",md:"500px",sm:"400px",xs:"270px"},backgroundSize:"100% 100%"}}>
+                  <Box sx={{backgroundImage:`url(${ele.silde.src})`,display:"flex",alignItems:"center",justifyContent:"center",height:{lg:"600px",md:"500px",sm:"400px",xs:"185px"},backgroundSize:"100% 100%"}}>
                      
                   </Box>
                 </Box>

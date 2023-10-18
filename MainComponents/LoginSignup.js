@@ -13,7 +13,6 @@ const LoginSignup = () => {
         <>
             <Header />
             <Container maxWidth={'xl'} disableGutters sx={{}}>
-
                 <Grid container >
                     <Grid item xs={12}>
                         <Box sx={{ height: "60px", bgcolor: "#eeeeee" }}>

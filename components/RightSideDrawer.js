@@ -34,7 +34,7 @@ const RightSideDrawer = ({ rightOpen, setRightOpen }) => {
       open={rightOpen}
       onClose={() => { setRightOpen(false) }}
       PaperProps={{
-        sx: { width: { lg: '28%', md: '35%', sm: '50%', xs: '60%' }, margin: 'auto', bgcolor: 'white' }
+        sx: { width: { lg: '28%', md: '35%', sm: '50%', xs: '60%' }, zIndex:999999999,margin: 'auto', bgcolor: 'white' }
       }}
     >
       <Grid container sx={{ color: 'white' }} >
@@ -112,7 +112,7 @@ const RightSideDrawer = ({ rightOpen, setRightOpen }) => {
 
                 </Box>
 
-              </Grid>
+              </Grid> 
 
               :
               <Grid item xs={12} sx={{ lineHeight: '10px', textAlign: 'left', p: '10px' }}>

@@ -68,8 +68,9 @@ const handleShowDataDrawer=(event,ele)=>{
 
 
     return (
-            <Container maxWidth={'xl'} disableGutters sx={{overflow:"hidden"}}>
+        <>
             <Header/>
+            <Container maxWidth={'xl'} disableGutters sx={{overflow:"hidden"}}>
                 <Grid container sx={{ pl:"10px",pr:"10px",overflow:"hidden" }}>
                     <Grid item xs={12}>
                         <Box sx={{ height: "60px", bgcolor: "#eeeeee" }}>
@@ -443,10 +444,12 @@ const handleShowDataDrawer=(event,ele)=>{
                         <InstagramIcon sx={{ mr: "7px" }} /> FOLLOW US ON INSTAGRAM
                     </Button>
                 </Box>
-                <MyCartDrawer cartOpen={cartOpen} setCartOpen={setCartOpen}/>
-              <QuickViewDrawer open={quickView} setOpen={setQuickView} data={quickViewData}/>
+                  <MyCartDrawer cartOpen={cartOpen} setCartOpen={setCartOpen}/>
+                  <QuickViewDrawer open={quickView} setOpen={setQuickView} data={quickViewData}/>
                 <Footer />
             </Container>
+
+        </>
     )
 }
 

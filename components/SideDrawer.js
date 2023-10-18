@@ -24,7 +24,7 @@ const changeHandler=(ele)=>{
       open={open}
       onClose={() => { setOpen(false) }}
       PaperProps={{
-        sx: { width: { lg: '0%', md: '28%', sm: '45%', xs: '80%' }, margin: 'auto', bgcolor: 'black' }
+        sx: { width: { lg: '0%', md: '28%', sm: '45%', xs: '80%' }, zIndex:999999999, margin: 'auto', bgcolor: 'black' }
       }}
     >
       <Grid container >

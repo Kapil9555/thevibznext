@@ -197,7 +197,6 @@ const boxSizeHandler = (ele) => {
         setColorTypo(item)
     }
 
-    // console.log(showProducts)
     const handleProductControl =(ele)=>{
         router.push(`/userproductpage/${ele}`)
     }
@@ -207,8 +206,7 @@ console.log(params.shop)
     return (
         <>
             <Header />
-            {/* <HomePage /> */}
-
+           
             <Grid container >
                 <Grid item xs={12} sx={{ bgcolor: '#f5f5f5', display: 'flex', justifyContent: 'center', alignItems: 'center', p: '8px' }}>
                     <Typography sx={{ color: 'grey', fontSize: '15px' }}>Home</Typography>

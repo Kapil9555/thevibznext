@@ -14,7 +14,7 @@ const WishlistDrawer = ({ wishListopen, setWishListopen }) => {
             open={wishListopen}
             onClose={() => { setWishListopen(false) }}
             PaperProps={{
-                sx: { width: { lg: '28%', md: '35%', sm: '50%', xs: '60%' }, margin: 'auto', bgcolor: 'white' }
+                sx: { width: { lg: '28%', md: '35%', sm: '50%', xs: '60%' }, zIndex:999999999, margin: 'auto', bgcolor: 'white' }
             }}
         >
             <Grid container sx={{ color: 'white' }} >
