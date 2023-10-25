@@ -15,34 +15,30 @@ const AdminProductEditDetails = () => {
 
     const { dispatch,state } = useContext(globalContext)
 
-    const [productImgRaw, setProductImgRaw] = useState({ img: "" });
+    const [productImgRaw, setProductImgRaw] = useState({img: "" });
     
     const [adminAddNewProduct, setAdminAddNewProduct] = useState({
-        cat_id:"",
-        catName:"",
-        isCatAvailable: true,
-        _id: new Date().getTime(),
+        _id:"",
         productName:"",
         orgPrice: "",
         discPrice: "",
         isAvailable: "",
         magnifyImg: [],
-        titDesc: [{ title: "", description: "", id: new Date().getTime() }],
+        titDesc: [{ title: "", description: "",}],
         sizeChart: { small: "", medium: "", large: "", extraLarge: "", XXL: "" },
         sizeImage: ""
     });
 
-    console.log(param)
+    
 
 useEffect(()=>{
     const filtered=state.mainState.filter((ele)=>{
         return ele._id ==param.adminproducteditpage
     })
-    
     setAdminAddNewProduct(...filtered)
 },[])
 
-
+// console.log(adminAddNewProduct.sizeChart.extraLarge)
 
 
     //  function collecting data of name mrp srp 
@@ -110,22 +106,28 @@ useEffect(()=>{
 
     // adding category to mainState
     const handleAddCategory = () => {
-        if (adminAddNewProduct.cat_id == "" || adminAddNewProduct.catName == "" || adminAddNewProduct.isCatAvailable == "" ||
+        if (
             adminAddNewProduct.productName == "" || adminAddNewProduct.orgPrice == "" || adminAddNewProduct.discPrice == "" || 
             adminAddNewProduct.isAvailable == "" || adminAddNewProduct.magnifyImg.length == 0 || adminAddNewProduct.titDesc[0].title == "" ||
-            adminAddNewProduct.titDesc[0].description == "" || adminAddNewProduct.sizeImage == "") {
+            adminAddNewProduct.titDesc[0].description == "" || adminAddNewProduct.sizeImage == "")
+            {
+
             alert("please fill the required fields")
+
         }
         else {
+            const filteredData=state.mainState.map((ele)=>{ if(ele._id==adminAddNewProduct._id){return adminAddNewProduct}else{ return ele}  })
+                        console.log(filteredData)
             dispatch({
-                type: "ADDINGNEWPRODUCT",
-                payload: (adminAddNewProduct)
+                type: "EDITPRODUCT",
+                payload: (filteredData)
             })
-            router.push('/adminproductpage')
+            // router.push(`/adminproductsec/${adminAddNewProduct.cat_Id}`)
         }
 
     }
 
+    
     return (
         <>
             <Grid container sx={{ justifyContent: "center", overflow: "scroll", pb: "15px" }}>
@@ -178,32 +180,31 @@ useEffect(()=>{
 
                                         <FormGroup aria-label="position" row>
                                             <FormControlLabel
-                                                value="small"
-
-                                                control={<Checkbox size='small' name='small' sx={{ ml: "4px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
+                                               checked={adminAddNewProduct.sizeChart.small==true?true:false}
+                                                control={<Checkbox size='small'   name='small'  sx={{ ml: "4px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>S</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="medium"
-                                                control={<Checkbox size='small' name='medium' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
+                                               checked={adminAddNewProduct.sizeChart.medium==true?true:false}
+                                                control={<Checkbox size='small'  name='medium' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>M</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="large"
-                                                control={<Checkbox size='small' name='large' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
+                                                checked={adminAddNewProduct.sizeChart.large==true?true:false}
+                                                control={<Checkbox size='small'  name='large' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>L</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="extraLarge"
-                                                control={<Checkbox size='small' name='extraLarge' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
+                                               checked={adminAddNewProduct.sizeChart.extraLarge==true?true:false}
+                                                control={<Checkbox size='small'   name='extraLarge' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>Xl</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="XXL"
+                                               checked={adminAddNewProduct.sizeChart.XXL==true?true:false}
                                                 control={<Checkbox size='small' name='XXL' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>XXL</Typography>}
                                                 labelPlacement="end"
@@ -269,23 +270,23 @@ useEffect(()=>{
                             <Grid item xs={12} sx={{ display: "flex", alignItems: "center" }}>
                                 <Box sx={{ height: "30px", width: "100%" }}>
                                     <Typography align='center' sx={{ position: "relative", top: "0px", mt: "4px", border: "1px solid gray" }}>
-                                        <input type='file' style={{ zIndex: 99, opacity: 0, position: "absolute", left: "0px", top: "0px", height: "30px", width: "100%" }} onChange={handleCollectProductImage} />
+                                        <input type='file' style={{ zIndex: 99, opacity: 0, position: "absolute", left: "0px", top: "0px", height: "30px", width: "100%" }} onChange={handleCollectProductImage}  />
                                         Choose Image
                                     </Typography>
                                 </Box>
-                                <Button variant='contained' sx={{ bgcolor: THEME_COLOR, '&:hover': { bgcolor: THEME_COLOR }, height: "25px", ml: "5px", p: "0px", mt: "3px", fontSize: "13px" }} onClick={handleShowImage} >Add</Button>
+                                <Button variant='contained' sx={{ bgcolor: THEME_COLOR, '&:hover': { bgcolor: THEME_COLOR }, height: "25px", ml: "5px", p: "0px", mt: "3px", fontSize: "13px" }} onClick={handleShowImage} disabled={adminAddNewProduct.magnifyImg.length>4?true:false}>Add</Button>
                             </Grid>
                             <Grid container sx={{ justifyContent: "center", mt: "15px" }}>
                                 {
                                     adminAddNewProduct.magnifyImg.map((ele, index) => {
-                                        {console.log(ele.src)}
+                                        console.log(ele)
                                         return (
                                             <Grid item xs={2.2} key={index} sx={{ mr: "5px" }}>
                                                 <Box
                                                     sx={{
                                                         height: "90px",
                                                         border: "1px solid gray",
-                                                        backgroundImage: `url(${ele.src})`,
+                                                        backgroundImage: `url(${ele.img.src})`,
                                                         backgroundSize: "cover",
                                                         backgroundPosition: "center",
                                                     }}
@@ -350,7 +351,7 @@ useEffect(()=>{
 
 
                             <Grid item xs={12} sx={{ mt: "15px", display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
-                                <Button variant='contained' sx={{ bgcolor: THEME_COLOR, color: "white", '&:hover': { bgcolor: THEME_COLOR } }} onClick={handleAddCategory}>create Category</Button>
+                                <Button variant='contained' sx={{ bgcolor: THEME_COLOR, color: "white", '&:hover': { bgcolor: THEME_COLOR } }} onClick={handleAddCategory}>Edit Category</Button>
                             </Grid>
                         </Grid>
 
@@ -359,11 +360,6 @@ useEffect(()=>{
 
                 </Grid>
             </Grid>
-
-
-
-
-
         </>
     )
 }

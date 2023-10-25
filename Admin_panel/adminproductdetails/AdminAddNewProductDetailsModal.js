@@ -16,7 +16,7 @@ const AdminAddNewProductDetailsModal = () => {
 
     const {state,dispatch}=useContext(globalContext)
    
-    const [productImgRaw, setProductImgRaw] = useState({ img: "" });
+    const [productImgRaw, setProductImgRaw] = useState({img:{src:""} });
     const [adminAddNewProduct, setAdminAddNewProduct] = useState({
         cat_Id:"",
         catName:"",
@@ -25,15 +25,17 @@ const AdminAddNewProductDetailsModal = () => {
         productName: "",
         orgPrice: "",
         discPrice: "",
-        isAvailable: "",
+        isAvailable:false,
         magnifyImg: [],
-        titDesc: [{ title: "", description: "", id: new Date().getTime() }],
-        sizeChart: { small: "", medium: "", large: "", extraLarge: "", XXL: "" },
+        titDesc: [{ title: "", description: ""}],
+        sizeChart: { small:false, medium: false, large:false, extraLarge:false, XXL:false },
         sizeImage: ""
     });
 
+    
     useEffect(()=>{
         const filteredData=state.mainState.filter((ele)=>{ return ele.cat_Id == param.adminAddNewProductDetailsModal})
+        // console.log(filteredData)
         setAdminAddNewProduct({...adminAddNewProduct,catName:filteredData[0].catName,cat_Id:filteredData[0].cat_Id})
     },[])
 
@@ -42,14 +44,15 @@ const AdminAddNewProductDetailsModal = () => {
    //  function collecting data of name mrp srp 
     const handleCollectData = (e) => {
         const { name, value } = e.target;
+
         setAdminAddNewProduct({ ...adminAddNewProduct, [name]: value });
     };
 
 
-    // function collecting data of sizechartimage state
+    // function collecting data of sizechart checkbox state
     const handleCollectDataCheckBox = (e) => {
-        const { name, value } = e.target;
-        setAdminAddNewProduct({ ...adminAddNewProduct, sizeChart: { ...adminAddNewProduct.sizeChart, [name]: value } });
+        const { name, checked } = e.target;
+        setAdminAddNewProduct({ ...adminAddNewProduct, sizeChart: { ...adminAddNewProduct.sizeChart, [name]: checked } });
     };
 
     // collecting size chart image
@@ -60,7 +63,7 @@ const AdminAddNewProductDetailsModal = () => {
 
     // collecting product image
     const handleCollectProductImage = (e) => {
-        setProductImgRaw({ ...productImgRaw, img: URL.createObjectURL(e.target.files[0]) });
+        setProductImgRaw({ ...productImgRaw, img: { src: URL.createObjectURL(e.target.files[0]) } });
     };
 
 
@@ -102,28 +105,30 @@ const AdminAddNewProductDetailsModal = () => {
         }
     }
 
-    // adding category to mainState
+    // adding product to mainState
        const handleAddCategory=()=>{
 
         if(adminAddNewProduct.cat_Id =="" || adminAddNewProduct.catName=="" ||  adminAddNewProduct.isCatAvailable=="" ||  
-        adminAddNewProduct.productName=="" ||  adminAddNewProduct.orgPrice=="" || adminAddNewProduct.discPrice=="" || adminAddNewProduct.isAvailable=="" || adminAddNewProduct.magnifyImg.length==0 || adminAddNewProduct.titDesc[0].title=="" || 
+        adminAddNewProduct.productName =="" ||  adminAddNewProduct.orgPrice=="" || adminAddNewProduct.discPrice=="" || adminAddNewProduct.isAvailable=="" || adminAddNewProduct.magnifyImg.length==0 || adminAddNewProduct.titDesc[0].title=="" || 
         adminAddNewProduct.titDesc[0].description=="" || adminAddNewProduct.sizeImage=="" ){
             alert("please fill the required fields")
         }
         else{
+            console.log(adminAddNewProduct)
+
             dispatch({
                 type:"ADDINGNEWPRODUCT",
                 payload:(adminAddNewProduct)
              })
-             router.back()
+             router.push(`/adminproductsec/${param.adminAddNewProductDetailsModal}`)
         }
-        
        }
 
-    
-    
+
+    //    console.log(adminAddNewProduct)
+
     return (
-        <>
+        
             <Grid container sx={{ justifyContent: "center", overflow: "scroll", pb: "15px" }}>
                 <Grid item xs={6} sx={{ border: "1px solid gray" }}>
                     <Grid container>
@@ -132,11 +137,7 @@ const AdminAddNewProductDetailsModal = () => {
 
                             <Typography align='center' sx={{ bgcolor: THEME_COLOR, color: "white", p: "10px", fontSize: "14px", fontWeight: "700" }}> Add New Product</Typography>
                         </Grid>
-
-
                         <Grid container sx={{ p: "10px" }}>
-
-
                             <Grid item xs={12} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                                 <Typography sx={{ fontSize: "17px"}}>Product Name:</Typography>
                             </Grid>
@@ -174,32 +175,31 @@ const AdminAddNewProductDetailsModal = () => {
 
                                         <FormGroup aria-label="position" row>
                                             <FormControlLabel
-                                                value="small"
-
-                                                control={<Checkbox size='small' name='small' sx={{ ml: "4px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
+                                                checked={adminAddNewProduct.sizeChart.small}
+                                                control={<Checkbox size='small' name='small'  sx={{ ml: "4px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>S</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="medium"
+                                                checked={adminAddNewProduct.sizeChart.medium}
                                                 control={<Checkbox size='small' name='medium' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>M</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="large"
+                                                checked={adminAddNewProduct.sizeChart.large}
                                                 control={<Checkbox size='small' name='large' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>L</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="extraLarge"
+                                                checked={adminAddNewProduct.sizeChart.extraLarge}
                                                 control={<Checkbox size='small' name='extraLarge' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>Xl</Typography>}
                                                 labelPlacement="end"
                                             />
                                             <FormControlLabel
-                                                value="XXL"
+                                                checked={adminAddNewProduct.sizeChart.XXL}
                                                 control={<Checkbox size='small' name='XXL' sx={{ ml: "3px", p: "4px" }} onChange={(e) => { handleCollectDataCheckBox(e) }} />}
                                                 label={<Typography sx={{ mt: "4px", fontSize: "16px", fontWeight: "700" }}>XXL</Typography>}
                                                 labelPlacement="end"
@@ -280,7 +280,7 @@ const AdminAddNewProductDetailsModal = () => {
                                                     sx={{
                                                         height: "90px",
                                                         border: "1px solid gray",
-                                                        backgroundImage: `url(${ele.img})`,
+                                                        backgroundImage: `url(${ele.img.src})`,
                                                         backgroundSize: "cover",
                                                         backgroundPosition: "center",
                                                     }}
@@ -345,7 +345,7 @@ const AdminAddNewProductDetailsModal = () => {
 
 
                             <Grid item xs={12} sx={{ mt: "15px", display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
-                                <Button variant='contained' sx={{ bgcolor: THEME_COLOR, color: "white", '&:hover': { bgcolor: THEME_COLOR } }} onClick={handleAddCategory}>create Category</Button>
+                                <Button variant='contained' sx={{ bgcolor: THEME_COLOR, color: "white", '&:hover': { bgcolor: THEME_COLOR } }} onClick={handleAddCategory}>Add Product</Button>
                             </Grid>
                         </Grid>
 
@@ -354,12 +354,6 @@ const AdminAddNewProductDetailsModal = () => {
 
                 </Grid>
             </Grid>
-
-
-
-
-
-        </>
     )
 }
 

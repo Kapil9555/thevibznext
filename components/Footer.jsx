@@ -29,16 +29,13 @@ const Footer = () => {
                         <Typography sx={{ color: '#212121', fontSize: { lg: '19px', md: '17px', sm: '17px' } }}>Need more information? </Typography>
                         <Box sx={{ width: '150px', height: '25px', bgcolor: 'black', p: '3px' }}>
                             <Typography sx={{ color: 'white', textAlign: 'center', fontSize: '13px', fontWeight: '800', mt: '3px' }}>CONTACT US</Typography>
-
                         </Box>
-
-
                     </Grid>
-
-
                 </Grid>
 
+
                 {/* second part  */}
+
 
                 <Grid container sx={{ justifyContent: 'center', height: '230px', bgcolor: 'black', }}>
                     <Grid item lg={12} md={12} sm={12} xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>

@@ -21,6 +21,8 @@ export const reducer = (state, action) => {
             return ({...state,mainState:[...state.mainState,action.payload]})
         case "DELETEPRODUCT":
             return ({...state,mainState:action.payload})
+        case "EDITPRODUCT":
+            return ({...state,mainState:action.payload})
         default:
             break;
     }

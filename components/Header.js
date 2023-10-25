@@ -145,6 +145,7 @@ const Header = () => {
                             </Grid>
                         </Grid>
 
+
                         <Grid item xs={4.5} sx={{ display: "flex", alignItems: "center" }}>
                             <Box sx={{ position: "relative", border: "2px solid #757575", display: "flex", alignItems: "center", height: "35px", width: "100%" }}>
                                 <Box sx={{}}>
@@ -170,6 +171,7 @@ const Header = () => {
 
                             </Box>
                         </Grid>
+
 
                         <Grid item xs={3} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <Box>

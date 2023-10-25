@@ -74,7 +74,7 @@ const AdminProductCategories = () => {
                </Grid>
                 
                 <Grid item xs={4} sx={{display:"flex",justifyContent:"center"}}>
-                <Typography sx={{ fontSize: "25px", fontWeight: "900", color: "white" }}>
+                <Typography sx={{ fontSize: "25px", fontWeight: "900", color: "white" }} onClick={()=>{router.push('/shoppage/shop')}}>
                    Product Categories
                 </Typography>
                 </Grid>

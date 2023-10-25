@@ -20,15 +20,17 @@ const AdminProductPage = () => {
         return item.cat_Id == param.adminproductpage
       })
       setShowData(filteredData) 
-    },[])
+    },[state.mainState])
 
    
 
     // function for deleter product
     const handleDeleteProduct = (id) => {
+        // console.log(id)
         const filtered = state.mainState.filter((ele) => {
             return ele._id !== id;
         });
+        console.log(filtered)
     
         dispatch({
             type: "DELETEPRODUCT",
@@ -36,10 +38,12 @@ const AdminProductPage = () => {
         });
     }
 
+    
     const handleEditPage =(id)=>{
         router.push(`/admineditproduct/${id}`)
     }
 
+    
    
     return (
         <>
@@ -99,8 +103,9 @@ const AdminProductPage = () => {
                         <TableBody>
                         {
                             showData.map((ele,index)=>{
-                                return(
-                                    <TableRow key={index} sx={{border:"1px solid red"}}>
+                                if(ele.productName){
+                                    return(
+                                    <TableRow key={index} sx={{}}>
                                     <TableCell align='center' sx={{cursor:"pointer"}}>{index}</TableCell>
                                 <TableCell align='center' sx={{cursor:"pointer"}} onClick={()=>{router.push(`/adminproductdetails`)}}>
                                        {
@@ -123,6 +128,15 @@ const AdminProductPage = () => {
                                 </TableCell>
                             </TableRow>
                                 )
+                                }
+                                else{
+                                    return (
+                                        <TableRow sx={{}}>
+                                           
+                                        </TableRow>
+                                    )
+                                }
+                                
                             })
                         }
                             
